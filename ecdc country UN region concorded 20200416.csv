@@ -1,0 +1,207 @@
+countriesAndTerritories,country,iso3,unregion,unsubregion
+Afghanistan,Afghanistan,AFG,Asia,Southern Asia
+Albania,Albania,ALB,Europe,Southern Europe
+Algeria,Algeria,DZA,Africa,Northern Africa
+Andorra,Andorra,AND,Europe,Southern Europe
+Angola,Angola,AGO,Africa,Middle Africa
+Antigua_and_Barbuda,Antigua and Barbuda,ATG,Americas,Caribbean
+Argentina,Argentina,ARG,Americas,South America
+Paraguay,Paraguay,PRY,Americas,South America
+Uruguay,Uruguay,URY,Americas,South America
+Bolivia,Bolivia,BOL,Americas,South America
+Armenia,Armenia,ARM,Asia,Western Asia
+Australia,Australia,AUS,Oceania,Australia and New Zealand
+Austria,Austria,AUT,Europe,Western Europe
+Azerbaijan,Azerbaijan,AZE,Asia,Western Asia
+Bahamas,Bahamas,BHS,Americas,Caribbean
+Bahrain,Bahrain,BHR,Asia,Western Asia
+Bangladesh,Bangladesh,BGD,Asia,Southern Asia
+Barbados,Barbados,BRB,Americas,Caribbean
+Belarus,Belarus,BLR,Europe,Eastern Europe
+Belgium,Belgium,BEL,Europe,Western Europe
+Belize,Belize,BLZ,Americas,Central America
+Benin,Benin,BEN,Africa,Western Africa
+Bhutan,Bhutan,BTN,Asia,Southern Asia
+Bosnia_and_Herzegovina,Bosnia and Herzegovina,BIH,Europe,Southern Europe
+Botswana,Botswana,BWA,Africa,Southern Africa
+Brazil,Brazil,BRA,Americas,South America
+Brunei_Darussalam,Brunei,BRN,Asia,South-Eastern Asia
+Bulgaria,Bulgaria,BGR,Europe,Eastern Europe
+Burkina_Faso,Burkina Faso,BFA,Africa,Western Africa
+Myanmar,Myanmar,MMR,Asia,South-Eastern Asia
+Burundi,Burundi,BDI,Africa,Eastern Africa
+Cape_Verde,Cabo Verde,CPV,Africa,Western Africa
+Cambodia,Cambodia,KHM,Asia,South-Eastern Asia
+Cameroon,Cameroon,CMR,Africa,Middle Africa
+Canada,Canada,CAN,Americas,Northern America
+Central_African_Republic,Central African Republic,CAF,Africa,Middle Africa
+Chad,Chad,TCD,Africa,Middle Africa
+Chile,Chile,CHL,Americas,South America
+China,China,CHN,Asia,Eastern Asia
+Colombia,Colombia,COL,Americas,South America
+Congo,Congo-Brazzaville,COG,Africa,Middle Africa
+Democratic_Republic_of_the_Congo,Congo-Kinshasa,COD,Africa,Middle Africa
+Costa_Rica,Costa Rica,CRI,Americas,Central America
+Cote_dIvoire,Côte d'Ivoire,CIV,Africa,Western Africa
+Croatia,Croatia,HRV,Europe,Southern Europe
+Cuba,Cuba,CUB,Americas,Caribbean
+Cyprus,Cyprus,CYP,Asia,Western Asia
+Czechia,Czech Republic,CZE,Europe,Eastern Europe
+Denmark,Denmark,DNK,Europe,Northern Europe
+Djibouti,Djibouti,DJI,Africa,Eastern Africa
+Dominica,Dominica,DMA,Americas,Caribbean
+Dominican_Republic,Dominican Republic,DOM,Americas,Caribbean
+Ecuador,Ecuador,ECU,Americas,South America
+Egypt,Egypt,EGY,Africa,Northern Africa
+El_Salvador,El Salvador,SLV,Americas,Central America
+Equatorial_Guinea,Equatorial Guinea,GNQ,Africa,Middle Africa
+Eritrea,Eritrea,ERI,Africa,Eastern Africa
+Estonia,Estonia,EST,Europe,Northern Europe
+Ethiopia,Ethiopia,ETH,Africa,Eastern Africa
+Fiji,Fiji,FJI,Oceania,Melanesia
+Finland,Finland,FIN,Europe,Northern Europe
+France,France,FRA,Europe,Western Europe
+Gabon,Gabon,GAB,Africa,Middle Africa
+Gambia,Gambia,GMB,Africa,Western Africa
+Georgia,Georgia,GEO,Asia,Western Asia
+Germany,Germany,DEU,Europe,Western Europe
+Ghana,Ghana,GHA,Africa,Western Africa
+Greece,Greece,GRC,Europe,Southern Europe
+Grenada,Grenada,GRD,Americas,Caribbean
+Guatemala,Guatemala,GTM,Americas,Central America
+Guinea,Guinea,GIN,Africa,Western Africa
+Guinea_Bissau,Guinea-Bissau,GNB,Africa,Western Africa
+Guyana,Guyana,GUY,Americas,South America
+Haiti,Haiti,HTI,Americas,Caribbean
+Honduras,Honduras,HND,Americas,Central America
+Hungary,Hungary,HUN,Europe,Eastern Europe
+Iceland,Iceland,ISL,Europe,Northern Europe
+India,India,IND,Asia,Southern Asia
+Indonesia,Indonesia,IDN,Asia,South-Eastern Asia
+Iran,Iran,IRN,Asia,Southern Asia
+Iraq,Iraq,IRQ,Asia,Western Asia
+Ireland,Ireland,IRL,Europe,Northern Europe
+Israel,Israel,ISR,Asia,Western Asia
+Italy,Italy,ITA,Europe,Southern Europe
+Jamaica,Jamaica,JAM,Americas,Caribbean
+Japan,Japan,JPN,Asia,Eastern Asia
+Jordan,Jordan,JOR,Asia,Western Asia
+Kazakhstan,Kazakhstan,KAZ,Asia,Central Asia
+Kenya,Kenya,KEN,Africa,Eastern Africa
+Kuwait,Kuwait,KWT,Asia,Western Asia
+Kyrgyzstan,Kyrgyzstan,KGZ,Asia,Central Asia
+Laos,Laos,LAO,Asia,South-Eastern Asia
+Latvia,Latvia,LVA,Europe,Northern Europe
+Lebanon,Lebanon,LBN,Asia,Western Asia
+Liberia,Liberia,LBR,Africa,Western Africa
+Libya,Libya,LBY,Africa,Northern Africa
+Liechtenstein,Liechtenstein,LIE,Europe,Western Europe
+Lithuania,Lithuania,LTU,Europe,Northern Europe
+Luxembourg,Luxembourg,LUX,Europe,Western Europe
+North_Macedonia,Macedonia,MKD,Europe,Southern Europe
+Madagascar,Madagascar,MDG,Africa,Eastern Africa
+Malawi,Malawi,MWI,Africa,Eastern Africa
+Malaysia,Malaysia,MYS,Asia,South-Eastern Asia
+Maldives,Maldives,MDV,Asia,Southern Asia
+Mali,Mali,MLI,Africa,Western Africa
+Malta,Malta,MLT,Europe,Southern Europe
+Mauritania,Mauritania,MRT,Africa,Western Africa
+Mauritius,Mauritius,MUS,Africa,Eastern Africa
+Mexico,Mexico,MEX,Americas,Central America
+Moldova,Moldova,MDA,Europe,Eastern Europe
+Monaco,Monaco,MCO,Europe,Western Europe
+Mongolia,Mongolia,MNG,Asia,Eastern Asia
+Montenegro,Montenegro,MNE,Europe,Southern Europe
+Morocco,Morocco,MAR,Africa,Northern Africa
+Mozambique,Mozambique,MOZ,Africa,Eastern Africa
+Nepal,Nepal,NPL,Asia,Southern Asia
+Netherlands,Netherlands,NLD,Europe,Western Europe
+New_Zealand,New Zealand,NZL,Oceania,Australia and New Zealand
+Nicaragua,Nicaragua,NIC,Americas,Central America
+Niger,Niger,NER,Africa,Western Africa
+Nigeria,Nigeria,NGA,Africa,Western Africa
+Norway,Norway,NOR,Europe,Northern Europe
+Oman,Oman,OMN,Asia,Western Asia
+Pakistan,Pakistan,PAK,Asia,Southern Asia
+Panama,Panama,PAN,Americas,Central America
+Papua_New_Guinea,Papua New Guinea,PNG,Oceania,Melanesia
+Peru,Peru,PER,Americas,South America
+Philippines,Philippines,PHL,Asia,South-Eastern Asia
+Poland,Poland,POL,Europe,Eastern Europe
+Portugal,Portugal,PRT,Europe,Southern Europe
+Qatar,Qatar,QAT,Asia,Western Asia
+Romania,Romania,ROU,Europe,Eastern Europe
+Russia,Russia,RUS,Europe,Eastern Europe
+Rwanda,Rwanda,RWA,Africa,Eastern Africa
+Saint_Kitts_and_Nevis,Saint Kitts and Nevis,KNA,Americas,Caribbean
+Saint_Lucia,Saint Lucia,LCA,Americas,Caribbean
+Saint_Vincent_and_the_Grenadines,Saint Vincent and the Grenadines,VCT,Americas,Caribbean
+Sao_Tome_and_Principe,Sao Tome and Principe,STP,Africa,Middle Africa
+Saudi_Arabia,Saudi Arabia,SAU,Asia,Western Asia
+Senegal,Senegal,SEN,Africa,Western Africa
+Serbia,Serbia,SRB,Europe,Southern Europe
+Seychelles,Seychelles,SYC,Africa,Eastern Africa
+Sierra_Leone,Sierra Leone,SLE,Africa,Western Africa
+Singapore,Singapore,SGP,Asia,South-Eastern Asia
+Slovakia,Slovakia,SVK,Europe,Eastern Europe
+Slovenia,Slovenia,SVN,Europe,Southern Europe
+Somalia,Somalia,SOM,Africa,Eastern Africa
+South_Africa,South Africa,ZAF,Africa,Southern Africa
+South_Korea,"Korea, Republic of",KOR,Asia,Eastern Asia
+South_Sudan,South Sudan,SSD,Africa,Northern Africa
+Spain,Spain,ESP,Europe,Southern Europe
+Sri_Lanka,Sri Lanka,LKA,Asia,Southern Asia
+Sudan,Sudan,SDN,Africa,Northern Africa
+Suriname,Suriname,SUR,Americas,South America
+Eswatini,Swaziland,SWZ,Africa,Southern Africa
+Sweden,Sweden,SWE,Europe,Northern Europe
+Switzerland,Switzerland,CHE,Europe,Western Europe
+Syria,Syria,SYR,Asia,Western Asia
+United_Republic_of_Tanzania,Tanzania,TZA,Africa,Eastern Africa
+Thailand,Thailand,THA,Asia,South-Eastern Asia
+Timor_Leste,Timor Leste,TLS,Asia,South-Eastern Asia
+Togo,Togo,TGO,Africa,Western Africa
+Trinidad_and_Tobago,Trinidad and Tobago,TTO,Americas,Caribbean
+Tunisia,Tunisia,TUN,Africa,Northern Africa
+Turkey,Turkey,TUR,Asia,Western Asia
+Uganda,Uganda,UGA,Africa,Eastern Africa
+Ukraine,Ukraine,UKR,Europe,Eastern Europe
+United_Arab_Emirates,United Arab Emirates,ARE,Asia,Western Asia
+United_Kingdom,United Kingdom,GBR,Europe,Northern Europe
+United_States_of_America,United States,USA,Americas,Northern America
+Uzbekistan,Uzbekistan,UZB,Asia,Central Asia
+San_Marino,San Marino,SMR,Europe,Southern Europe
+Venezuela,Venezuela,VEN,Americas,South America
+Vietnam,Vietnam,VNM,Asia,South-Eastern Asia
+Yemen,Yemen,YEM,Asia,Western Asia
+Zambia,Zambia,ZMB,Africa,Eastern Africa
+Zimbabwe,Zimbabwe,ZWE,Africa,Eastern Africa
+Aruba,Aruba,ABW,Americas,Caribbean
+Bermuda,Bermuda,BMU,Americas,Northern America
+British_Virgin_Islands,British Virgin Islands,VGB,Americas,Caribbean
+Cayman_Islands,Cayman Islands,CYM,Americas,Caribbean
+Curaçao,Curacao,CUW,Americas,Caribbean
+Faroe_Islands,Faroe Islands,FRO,Europe,Northern Europe
+Gibraltar,Gibraltar,GIB,Europe,Southern Europe
+Greenland,Greenland,GRL,Americas,Northern America
+Guam,Guam,GUM,Oceania,Micronesia
+Guernsey,Guernsey,GGY,Europe,Northern Europe
+Isle_of_Man,Isle of Man,IMN,Europe,Northern Europe
+Jersey,Jersey,JEY,Europe,Northern Europe
+Montserrat,Montserrat,MSR,Americas,Caribbean
+New_Caledonia,New Caledonia,NCL,Oceania,Melanesia
+Northern_Mariana_Islands,Northern Mariana Islands,MNP,Oceania,Micronesia
+French_Polynesia,"Polynesia, French",PYF,Oceania,Polynesia
+Puerto_Rico,Puerto Rico,PRI,Americas,Caribbean
+Sint_Maarten,Sint Maarten,SXM,Americas,Caribbean
+Turks_and_Caicos_islands,Turks and Caicos Islands,TCA,Americas,Caribbean
+United_States_Virgin_Islands,U.S. Virgin Islands,VIR,Americas,Caribbean
+Taiwan,Taiwan,TWN,Asia,Eastern Asia
+Holy_See,Holy See,VAT,Europe,Southern Europe
+Kosovo,Kosovo,XKX,Europe,Southern Europe
+Palestine,Palestine,PSE,Asia,Western Asia
+Anguilla,Anguilla,AIA,Americas,Caribbean
+"Bonaire, Saint Eustatius and Saba","Bonaire, Saint Eustatius and Saba",BES,Americas,Caribbean
+Cases_on_an_international_conveyance_Japan,,,,
+Falkland_Islands_(Malvinas),Falkland Islands (Malvinas),FLK,Americas,South America
+Namibia,Namibia,NAM,Africa,Southern Africa
