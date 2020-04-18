@@ -49,13 +49,13 @@ def main():
     st.markdown(intro_markdown, unsafe_allow_html=True)
     # Different graph themes
     graph_option= st.selectbox(label='Select a theme to display',
-        options=['COVID-19 Total deaths per capita',
+        options=['COVID-19 Total deaths per million population',
                 'COVID-19 Total deaths',
                 'COVID-19 Daily deaths'],
         index=1)
     #
     if st.button('Reset Countries and Territories'):
-        if graph_option=='COVID-19 Total deaths per capita':
+        if graph_option=='COVID-19 Total deaths million population':
             totpc_graph_af= line_totdeath_pc_af(df_nday, df_region, reset=True)
         elif graph_option=='COVID-19 Total deaths':
             totd_graph_af= line_totdeath_af(df_nday, df_region, reset=True)
