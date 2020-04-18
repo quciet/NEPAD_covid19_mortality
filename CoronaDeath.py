@@ -44,15 +44,14 @@ def main():
             daily_graph_af= line_daydeath_af(df_nday, df_region, reset=True)
     #
     if graph_option=='COVID-19 Total deaths per capita':
-        if graph_option=='COVID-19 Total deaths per capita':
-            totpc_graph_af= line_totdeath_pc_af(df_nday, df_region,)
-            st.plotly_chart(totpc_graph_af)
-        elif graph_option=='COVID-19 Total deaths':
-            totd_graph_af= line_totdeath_af(df_nday, df_region)
-            st.plotly_chart(totd_graph_af)
-        else:
-            daily_graph_af= line_daydeath_af(df_nday, df_region)
-            st.plotly_chart(daily_graph_af)
+        totpc_graph_af= line_totdeath_pc_af(df_nday, df_region,)
+        st.plotly_chart(totpc_graph_af)
+    elif graph_option=='COVID-19 Total deaths':
+        totd_graph_af= line_totdeath_af(df_nday, df_region)
+        st.plotly_chart(totd_graph_af)
+    else:
+        daily_graph_af= line_daydeath_af(df_nday, df_region)
+        st.plotly_chart(daily_graph_af)
 
     # Comparison plot for African countries
     st.markdown('---', unsafe_allow_html=True)
