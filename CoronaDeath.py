@@ -55,14 +55,14 @@ def main():
         index=1)
     #
     if st.button('Reset Countries and Territories'):
-        if graph_option=='COVID-19 Total deaths million population':
+        if graph_option=='COVID-19 Total deaths per million population':
             totpc_graph_af= line_totdeath_pc_af(df_nday, df_region, reset=True)
         elif graph_option=='COVID-19 Total deaths':
             totd_graph_af= line_totdeath_af(df_nday, df_region, reset=True)
         else:
             daily_graph_af= line_daydeath_af(df_nday, df_region, reset=True)
     #
-    if graph_option=='COVID-19 Total deaths million population':
+    if graph_option=='COVID-19 Total deaths per million population':
         totpc_graph_af= line_totdeath_pc_af(df_nday, df_region,)
         st.plotly_chart(totpc_graph_af)
     elif graph_option=='COVID-19 Total deaths':
