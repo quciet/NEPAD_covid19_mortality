@@ -15,7 +15,7 @@ def main():
     '''Gathering data and Designing page layout.'''
     current_date= date.today()
     ecdc_link= "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv"
-    country_table_link= "https://raw.githubusercontent.com/quciet/NEPAD_covid19_mortality/master/ecdc%20country%20UN%20region%20concorded%2020200416.csv"
+    country_table_link= "https://raw.githubusercontent.com/quciet/NEPAD_covid19_mortality/master/data/ecdc%20country%20UN%20region%20concorded%2020200416.csv"
     #
     df_nday, df_region, today= fetch_ecdc(time= current_date,\
                 link= ecdc_link, link_c= country_table_link)
