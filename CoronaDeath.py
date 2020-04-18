@@ -227,23 +227,21 @@ def trend_score(df_nday, c_name):
     country_list= list(df_nday.countriesAndTerritories.drop_duplicates())
     #print(country_list)
     t_max= 0
-    t_max_actual= 0
     c_max= None
     for c2 in country_list:
         if c2!=c_name:
             dt_c2= df_nday[df_nday.countriesAndTerritories.isin([c2])]\
                 [["number_of_days", "total_deaths_pc"]].copy()
-            if dt_c2.shape[0]>=10 and dt_c2.shape[0]>dt_c1.shape[0] :
+            if dt_c2.shape[0]>dt_c1.shape[0] :
                 dt_trend= pd.merge(left=dt_c1, right=dt_c2, on=["number_of_days"], how='left')
                 #dt_trend.dropna(inplace=True)
                 t_score= dt_trend[["total_deaths_pc_x", "total_deaths_pc_y"]].corr()
-                t_score= t_score['total_deaths_pc_x'].values[1]
-                if abs(t_score)>t_max:
-                    t_max= abs(t_score)
-                    t_max_actual= t_score
+                t_score= t_score.loc['total_deaths_pc_x', 'total_deaths_pc_y'].values[0]
+                if t_score>t_max:
+                    t_max= t_score
                     c_max= c2
             #print(t_score)
-    return c_max, t_max_actual
+    return c_max, t_max
 
 @st.cache
 def trend_score_fig(df_nday, c_name, c_max, t_max_actual):
