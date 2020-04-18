@@ -23,7 +23,7 @@ def main():
     af_list=[]
     for c in df_nday[df_nday.unregion.isin(["Africa"])].\
         countriesAndTerritories.drop_duplicates():
-        if df_nday[df_nday.countriesAndTerritories.isin([c])].shape[0]>=10:
+        if df_nday[df_nday.countriesAndTerritories.isin([c])].shape[0]>=15:
             af_list.append(c)
     # Title section
     intro_markdown = read_markdown_file("mdfeatures/MainPageIntro.md")
@@ -33,7 +33,7 @@ def main():
         options=['COVID-19 Total deaths per capita',
                 'COVID-19 Total deaths',
                 'COVID-19 Daily deaths'],
-        index=0)
+        index=1)
     #
     if st.button('Reset Countries and Territories'):
         if graph_option=='COVID-19 Total deaths per capita':
@@ -59,11 +59,11 @@ def main():
      label= 'Explore the most similar trend to the country and territory.',
      options= af_list)
     if st.checkbox("Show Trends"):
-        c_similar, p_corr= trend_score(df_nday=df_nday, c_name=af_compare_option)
-        st.markdown(f'Comparing at least 10 days of records.\
-         Highest Pearson Correlation {"{:.2F}".format(p_corr)}, {c_similar}.', unsafe_allow_html=True)
+        pearson_max, country_max= trend_score(df_nday=df_nday, c_name=af_compare_option)
+        st.markdown(f'Comparison was done for at least 10 days of records starting at day 5.<br>\
+         Using percent change, highest Pearson correlation is {"{:.3F}".format(pearson_max)}, {country_max}.', unsafe_allow_html=True)
         sim_graph= trend_score_fig(df_nday=df_nday, c_name=af_compare_option,\
-            c_max=c_similar, t_max_actual= p_corr)
+            c_max=country_max, t_max_actual= pearson_max)
         st.plotly_chart(sim_graph)
 
 # Grab data to current date, if date doesn't change, the function won't re-run
@@ -224,24 +224,29 @@ def trend_score(df_nday, c_name):
     looks the most similar to the country or territory selected.'''
     dt_c1= df_nday[df_nday.countriesAndTerritories.isin([c_name])]\
     [["number_of_days", "total_deaths_pc"]].copy()
+    dt_c1= dt_c1[dt_c1.number_of_days>=5]
     country_list= list(df_nday.countriesAndTerritories.drop_duplicates())
     #print(country_list)
-    t_max= 0
-    c_max= None
+    pearson_max= 0
+    country_max= None
     for c2 in country_list:
         if c2!=c_name:
             dt_c2= df_nday[df_nday.countriesAndTerritories.isin([c2])]\
                 [["number_of_days", "total_deaths_pc"]].copy()
+            dt_c2= dt_c2[dt_c2.number_of_days>=5]
             if dt_c2.shape[0]>dt_c1.shape[0] :
                 dt_trend= pd.merge(left=dt_c1, right=dt_c2, on=["number_of_days"], how='left')
                 #dt_trend.dropna(inplace=True)
-                t_score= dt_trend[["total_deaths_pc_x", "total_deaths_pc_y"]].corr()
-                t_score= t_score.loc['total_deaths_pc_x', 'total_deaths_pc_y'][0]
-                if t_score>t_max:
-                    t_max= t_score
-                    c_max= c2
+                dt_trend= dt_trend[["total_deaths_pc_x", "total_deaths_pc_y"]]
+                dt_trend_pctchange= dt_trend.pct_change().dropna()
+                t_score= dt_trend_pctchange.corr()
+                t_score= t_score.loc['total_deaths_pc_x', 'total_deaths_pc_y']
+                # print(c_name, c2, t_score)
+                if t_score>pearson_max:
+                    pearson_max= t_score
+                    country_max= c2
             #print(t_score)
-    return c_max, t_max
+    return pearson_max, country_max
 
 @st.cache
 def trend_score_fig(df_nday, c_name, c_max, t_max_actual):
