@@ -62,7 +62,7 @@ def main():
         else:
             daily_graph_af= line_daydeath_af(df_nday, df_region, reset=True)
     #
-    if graph_option=='COVID-19 Total deaths per capita':
+    if graph_option=='COVID-19 Total deaths million population':
         totpc_graph_af= line_totdeath_pc_af(df_nday, df_region,)
         st.plotly_chart(totpc_graph_af)
     elif graph_option=='COVID-19 Total deaths':
