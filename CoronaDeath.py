@@ -26,8 +26,12 @@ def main():
         if df_nday[df_nday.countriesAndTerritories.isin([c])].shape[0]>=10:
             af_list.append(c)
     # Title section
-    intro_markdown = read_markdown_file("mdfeatures/MainPageIntro.md")
-    st.markdown(intro_markdown, unsafe_allow_html=True)
+    #intro_markdown = read_markdown_file("mdfeatures/MainPageIntro.md")
+    st.markdown('## COVID-19 Mortality Monitoring', unsafe_allow_html=True)
+    st.markdown('Data source: [European CDC](https://www.ecdc.europa.eu/en/covid-19-pandemic)', unsafe_allow_html=True)
+    st.markdown('- <font size="2"> Default highlighted regions are African countries and territories. </font>', unsafe_allow_html=True)
+    st.markdown('- <font size="2"> Use the panel on right side of Plotly graph to add or hide certain countries or territories. </font>', unsafe_allow_html=True)
+    st.markdown('---', unsafe_allow_html=True)
     # Different graph themes
     graph_option= st.selectbox(label='Select a theme to display',
         options=['COVID-19 Daily deaths % Population- 7 Day Moving Average',
