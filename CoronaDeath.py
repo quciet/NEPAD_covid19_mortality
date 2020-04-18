@@ -15,13 +15,15 @@ def read_markdown_file(markdown_file):
 @st.cache
 def update_data_file(current_date):
     '''Update data files in the github folder.'''
-    date_last_file= open("data/date_updated.txt","r+")
+    date_last_file= open("data/date_updated.txt","r")
     date_last= datetime.strptime(date_last_file.read(), "%Y-%m-%d").date()
+    date_last_file.close()
     if current_date>date_last:
         df= pd.read_csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",\
             na_values= "", encoding = "UTF-8")
         ecdc_link= f"data/ecdc raw.csv"
         df.to_csv(ecdc_link, encoding = "UTF-8")
+        date_last_file= open("data/date_updated.txt","w")
         date_last_file.write(str(current_date))
         date_last_file.close()
     else:
