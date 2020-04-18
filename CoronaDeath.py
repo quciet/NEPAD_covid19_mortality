@@ -18,7 +18,7 @@ def main():
     country_table_git_link= "data/ecdc country UN region concorded 20200416.csv"
     #
     df_nday, df_region, today= fetch_ecdc(time= current_date,\
-                link= ecdc_link, link_c= country_table_link)
+                link= ecdc_link, link_c= country_table_git_link)
     #
     af_list=[]
     for c in df_nday[df_nday.unregion.isin(["Africa"])].\
@@ -26,30 +26,34 @@ def main():
         if df_nday[df_nday.countriesAndTerritories.isin([c])].shape[0]>=10:
             af_list.append(c)
     # Title section
-    #intro_markdown = read_markdown_file("mdfeatures/MainPageIntro.md")
-    st.markdown('## COVID-19 Mortality Monitoring', unsafe_allow_html=True)
-    st.markdown('Data source: [European CDC](https://www.ecdc.europa.eu/en/covid-19-pandemic)', unsafe_allow_html=True)
-    st.markdown('- <font size="2"> Default highlighted regions are African countries and territories. </font>', unsafe_allow_html=True)
-    st.markdown('- <font size="2"> Use the panel on right side of Plotly graph to add or hide certain countries or territories. </font>', unsafe_allow_html=True)
-    st.markdown('---', unsafe_allow_html=True)
+    intro_markdown = read_markdown_file("mdfeatures/MainPageIntro.md")
+    st.markdown(intro_markdown, unsafe_allow_html=True)
     # Different graph themes
     graph_option= st.selectbox(label='Select a theme to display',
-        options=['COVID-19 Daily deaths % Population- 7 Day Moving Average',
-                'COVID-19 Total deaths'],
+        options=['COVID-19 Total deaths per capita',
+                'COVID-19 Total deaths',
+                'COVID-19 Daily deaths'],
         index=0)
     #
     if st.button('Reset Countries and Territories'):
-        if graph_option=='COVID-19 Daily deaths % Population- 7 Day Moving Average':
-            nday_graph_af= line_deathpc_7ma_af(df_nday, df_region, reset=True)
-        else:
+        if graph_option=='COVID-19 Total deaths per capita':
+            totpc_graph_af= line_totdeath_pc_af(df_nday, df_region, reset=True)
+        elif graph_option=='COVID-19 Total deaths':
             totd_graph_af= line_totdeath_af(df_nday, df_region, reset=True)
+        else:
+            daily_graph_af= line_daydeath_af(df_nday, df_region, reset=True)
     #
-    if graph_option=='COVID-19 Daily deaths % Population- 7 Day Moving Average':
-        nday_graph_af= line_deathpc_7ma_af(df_nday, df_region)
-        st.plotly_chart(nday_graph_af)
-    else:
-        totd_graph_af= line_totdeath_af(df_nday, df_region)
-        st.plotly_chart(totd_graph_af)
+    if graph_option=='COVID-19 Total deaths per capita':
+        if graph_option=='COVID-19 Total deaths per capita':
+            totpc_graph_af= line_totdeath_pc_af(df_nday, df_region,)
+            st.plotly_chart(totpc_graph_af)
+        elif graph_option=='COVID-19 Total deaths':
+            totd_graph_af= line_totdeath_af(df_nday, df_region)
+            st.plotly_chart(totd_graph_af)
+        else:
+            daily_graph_af= line_daydeath_af(df_nday, df_region)
+            st.plotly_chart(daily_graph_af)
+
     # Comparison plot for African countries
     st.markdown('---', unsafe_allow_html=True)
     af_compare_option= st.selectbox(
@@ -89,15 +93,11 @@ def fetch_ecdc(time, link, link_c):
         df.dateRep= pd.to_datetime(df.dateRep, format='%d/%m/%Y')
         df["date"]= df["dateRep"].astype('str')
         df= pd.merge(left= df, right= region_dt, on=["countriesAndTerritories"], how="left")
-        # deaths pct pop
-        fn = lambda row: row.deaths/row.popData2018
-        col = df.apply(fn, axis=1) # get column data with an index
-        df = df.assign(death_per_capita=col.values) # assign values to new column
+        # total deaths
         df.sort_values(by=["countriesAndTerritories","dateRep"], inplace=True)
         df.reset_index(drop=True, inplace=True)
         df["total_deaths"]=df.groupby(["countriesAndTerritories"])["deaths"].cumsum()
-        df["death_per_capita_7dayMA"]=df.groupby(["countriesAndTerritories"])["death_per_capita"].\
-                            rolling(window=7,min_periods=1).mean().reset_index(drop=True)
+        df["total_deaths_pc"]=df["total_deaths"]/df["popData2018"]
         # convert date to number of days since first 3 daily deaths recorded
         country_list= list(region_dt.countriesAndTerritories)
         dt_start_date_dt= []
@@ -113,7 +113,7 @@ def fetch_ecdc(time, link, link_c):
         dt_start_date_dt.rename(columns={"popData2018": "population_2018",\
                             "deaths": "daily_deaths", "cases": "daily_cases"}, inplace=True)
         dt_start_date_dt['h_text']= dt_start_date_dt.apply(lambda x: \
-        f'{x.date}<br>Daily deaths: {x.daily_deaths}<br>Total deaths: {x.total_deaths}<br>Dailydeaths per cap 7dayma: {"{:.2E}".format(x.death_per_capita_7dayMA)}<br>', axis=1)
+        f'{x.date}<br>Daily cases: {x.daily_cases}<br>Daily deaths: {x.daily_deaths}<br>Total deaths: {x.total_deaths}<br>Total deaths per cap: {"{:.2E}".format(x.total_deaths)}<br>', axis=1)
 
         return dt_start_date_dt, region_dt, time
     #
@@ -121,8 +121,8 @@ def fetch_ecdc(time, link, link_c):
         return None, None, time
 
 @st.cache
-def line_deathpc_7ma_af(df_nday, df_region, reset=False):
-    '''Plotly trends on deaths pct pop 7 day moving avg, default with African countries.<br>
+def line_totdeath_pc_af(df_nday, df_region, reset=False):
+    '''Plotly trends on total deaths per cap, default with African countries.<br>
        Use visible='legendonly' to hide lines in Plotly.'''
     #
     fig = go.Figure()
@@ -131,13 +131,13 @@ def line_deathpc_7ma_af(df_nday, df_region, reset=False):
         if not dt_country.empty:
             if dt_country.unregion.values[0]=='Africa':
                 fig.add_trace(go.Scatter(
-                    x=dt_country['number_of_days'], y=dt_country['death_per_capita_7dayMA'],
+                    x=dt_country['number_of_days'], y=dt_country['total_deaths_pc'],
                     mode='lines', name= c,
                     hovertemplate= dt_country['h_text']
                                         ))
             else:
                 fig.add_trace(go.Scatter(
-                    x=dt_country['number_of_days'], y=dt_country['death_per_capita_7dayMA'],
+                    x=dt_country['number_of_days'], y=dt_country['total_deaths_pc'],
                     mode='lines', name= c,
                     hovertemplate= dt_country['h_text'],
                     visible='legendonly'
@@ -149,9 +149,8 @@ def line_deathpc_7ma_af(df_nday, df_region, reset=False):
         #template= 'plotly_white',
         #title= 'COVID-19 Daily deaths % Population- 7 day moving avg',
         xaxis_title= "Number of Days- since 3 daily deaths recorded",
-        yaxis_title= "Daily deaths per capita, 7 day moving average"
+        yaxis_title= "Cumulative deaths over country's population"
                     )
-    print("Graph for daily deaths per capita 7dayMA generated.")
     return fig
 
 @st.cache
@@ -185,7 +184,39 @@ def line_totdeath_af(df_nday, df_region, reset=False):
         xaxis_title= "Number of Days- since 3 daily deaths recorded",
         yaxis_title= "Cumulative deaths confirmed"
                     )
-    print("Graph for total deaths generated.")
+    return fig
+
+@st.cache
+def line_daydeath_af(df_nday, df_region, reset=False):
+    '''Plotly trends on total deaths, default with African countries.<br>
+       Use visible='legendonly' to hide lines in Plotly.'''
+    #
+    fig = go.Figure()
+    for c in df_region.countriesAndTerritories:
+        dt_country= df_nday[df_nday.countriesAndTerritories==c].copy()
+        if not dt_country.empty:
+            if dt_country.unregion.values[0]=='Africa':
+                fig.add_trace(go.Scatter(
+                    x=dt_country['number_of_days'], y=dt_country['daily_deaths'],
+                    mode='lines', name= c,
+                    hovertemplate= dt_country['h_text']
+                                        ))
+            else:
+                fig.add_trace(go.Scatter(
+                    x=dt_country['number_of_days'], y=dt_country['daily_deaths'],
+                    mode='lines', name= c,
+                    hovertemplate= dt_country['h_text'],
+                    visible='legendonly'
+                                        ))
+    fig.update_layout(
+        width=900,
+        height=500,
+        margin=dict(l=20, r=20, t=35, b=0),
+        #template= 'plotly_white',
+        #title= 'COVID-19 Daily deaths % Population- 7 day moving avg',
+        xaxis_title= "Number of Days- since 3 daily deaths recorded",
+        yaxis_title= "Daily deaths confirmed"
+                    )
     return fig
 
 @st.cache
@@ -203,7 +234,7 @@ def trend_score(df_nday, c_name):
         if c2!=c_name:
             dt_c2= df_nday[df_nday.countriesAndTerritories.isin([c2])]\
                 [["number_of_days", "death_per_capita_7dayMA"]].copy()
-            if dt_c2.shape[0]>=10:
+            if dt_c2.shape[0]>=10 and dt_c2.shape[0]>dt_c1.shape[0] :
                 dt_trend= pd.merge(left=dt_c1, right=dt_c2, on=["number_of_days"], how='left')
                 #dt_trend.dropna(inplace=True)
                 t_score= dt_trend[["death_per_capita_7dayMA_x", "death_per_capita_7dayMA_y"]].corr()
