@@ -26,16 +26,16 @@ def update_data_file(current_date):
         date_last_file.close()
     else:
         ecdc_link= f"data/ecdc raw.csv"
-    return current_date, ecdc_link
+    return ecdc_link
 
 def main():
     '''Gathering data and Designing page layout.'''
     current_date= date.today()
-    current_date, ecdc_link= update_data_file(current_date)
+    ecdc_git_link= update_data_file(current_date)
     country_table_git_link= "data/ecdc country UN region concorded 20200416.csv"
     #
     df_nday, df_region, today= fetch_ecdc(time= current_date,\
-                link= ecdc_link, link_c= country_table_git_link)
+                link= ecdc_git_link, link_c= country_table_git_link)
     #
     af_list=[]
     for c in df_nday[df_nday.unregion.isin(["Africa"])].\
