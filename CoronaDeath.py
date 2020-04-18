@@ -236,7 +236,7 @@ def trend_score(df_nday, c_name):
                 dt_trend= pd.merge(left=dt_c1, right=dt_c2, on=["number_of_days"], how='left')
                 #dt_trend.dropna(inplace=True)
                 t_score= dt_trend[["total_deaths_pc_x", "total_deaths_pc_y"]].corr()
-                t_score= t_score.loc['total_deaths_pc_x', 'total_deaths_pc_y'].values[0]
+                t_score= t_score.loc['total_deaths_pc_x', 'total_deaths_pc_y'][0]
                 if t_score>t_max:
                     t_max= t_score
                     c_max= c2
