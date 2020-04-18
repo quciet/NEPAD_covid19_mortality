@@ -113,7 +113,7 @@ def fetch_ecdc(time, link, link_c):
         dt_start_date_dt.rename(columns={"popData2018": "population_2018",\
                             "deaths": "daily_deaths", "cases": "daily_cases"}, inplace=True)
         dt_start_date_dt['h_text']= dt_start_date_dt.apply(lambda x: \
-        f'{x.date}<br>Daily cases: {x.daily_cases}<br>Daily deaths: {x.daily_deaths}<br>Total deaths: {x.total_deaths}<br>Total deaths per cap: {"{:.2E}".format(x.total_deaths)}<br>', axis=1)
+        f'{x.date}<br>Daily cases: {x.daily_cases}<br>Daily deaths: {x.daily_deaths}<br>Total deaths: {x.total_deaths}<br>Total deaths per cap: {"{:.2E}".format(x.total_deaths_pc)}<br>', axis=1)
 
         return dt_start_date_dt, region_dt, time
     #
