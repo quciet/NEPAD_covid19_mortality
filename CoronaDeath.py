@@ -224,7 +224,7 @@ def trend_score(df_nday, c_name):
     '''Use scatter plot & pearson correlation to calculate the trends that
     looks the most similar to the country or territory selected.'''
     dt_c1= df_nday[df_nday.countriesAndTerritories.isin([c_name])]\
-    [["number_of_days", "death_per_capita_7dayMA"]].copy()
+    [["number_of_days", "total_deaths_pc"]].copy()
     country_list= list(df_nday.countriesAndTerritories.drop_duplicates())
     #print(country_list)
     t_max= 0
@@ -233,12 +233,12 @@ def trend_score(df_nday, c_name):
     for c2 in country_list:
         if c2!=c_name:
             dt_c2= df_nday[df_nday.countriesAndTerritories.isin([c2])]\
-                [["number_of_days", "death_per_capita_7dayMA"]].copy()
+                [["number_of_days", "total_deaths_pc"]].copy()
             if dt_c2.shape[0]>=10 and dt_c2.shape[0]>dt_c1.shape[0] :
                 dt_trend= pd.merge(left=dt_c1, right=dt_c2, on=["number_of_days"], how='left')
                 #dt_trend.dropna(inplace=True)
-                t_score= dt_trend[["death_per_capita_7dayMA_x", "death_per_capita_7dayMA_y"]].corr()
-                t_score= t_score['death_per_capita_7dayMA_x'].values[1]
+                t_score= dt_trend[["total_deaths_pc_x", "total_deaths_pc_y"]].corr()
+                t_score= t_score['total_deaths_pc_x'].values[1]
                 if abs(t_score)>t_max:
                     t_max= abs(t_score)
                     t_max_actual= t_score
@@ -253,7 +253,7 @@ def trend_score_fig(df_nday, c_name, c_max, t_max_actual):
     for c in [c_name, c_max]:
         dt_country= df_nday[df_nday.countriesAndTerritories==c].copy()
         fig.add_trace(go.Scatter(
-            x=dt_country['number_of_days'], y=dt_country['death_per_capita_7dayMA'],
+            x=dt_country['number_of_days'], y=dt_country['total_deaths_pc'],
             mode='lines', name= c,
             hovertemplate= dt_country['h_text']
                                 ))
@@ -264,7 +264,7 @@ def trend_score_fig(df_nday, c_name, c_max, t_max_actual):
         #template= 'plotly_white',
         #title= 'COVID-19 Daily deaths % Population- 7 day moving avg',
         xaxis_title= "Number of Days- since 3 daily deaths recorded",
-        yaxis_title= "Daily deaths per capita, 7 day moving average"
+        yaxis_title= "Total deaths over population"
                     )
     return fig
 
