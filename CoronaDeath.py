@@ -112,7 +112,7 @@ def fetch_ecdc(time, link, link_c):
         df.sort_values(by=["countriesAndTerritories","dateRep"], inplace=True)
         df.reset_index(drop=True, inplace=True)
         df["total_deaths"]=df.groupby(["countriesAndTerritories"])["deaths"].cumsum()
-        df["total_deaths_pm"]=1000000*df["total_deaths"]/df["popData2018"]
+        df["total_deaths_pm"]=1000000*df["total_deaths"]/df["popData2019"]
         # convert date to number of days since first 3 daily deaths recorded
         country_list= list(region_dt.countriesAndTerritories)
         dt_start_date_dt= []
@@ -125,7 +125,7 @@ def fetch_ecdc(time, link, link_c):
             dt["number_of_days"]= range(1,1+dt.shape[0])
             dt_start_date_dt.append(dt)
         dt_start_date_dt= pd.concat(dt_start_date_dt)
-        dt_start_date_dt.rename(columns={"popData2018": "population_2018",\
+        dt_start_date_dt.rename(columns={"popData2019": "population_2019",\
                             "deaths": "daily_deaths", "cases": "daily_cases"}, inplace=True)
         dt_start_date_dt['h_text']= dt_start_date_dt.apply(lambda x: \
         f'{x.date}<br>Daily cases: {x.daily_cases}<br>Daily deaths: {x.daily_deaths}<br>Total deaths: {x.total_deaths}<br>Total deaths per million: {"{:.3F}".format(x.total_deaths_pm)}<br>', axis=1)
